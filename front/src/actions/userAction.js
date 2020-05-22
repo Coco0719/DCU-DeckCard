@@ -1,27 +1,7 @@
-/*
-export const add = todo => ({
-  type: "ADD",
-  payload: todo
-});
 
-export const remove = id => ({
-  type: "REMOVE",
-  payload: id
-});
-
-export const toggleTodo = id => ({
-  type: "TOGGLE_TODO",
-  payload: id
-});
-
-export const changeView = type => ({
-  type: "CHANGE_VIEW",
-  payload: type
-});
-*/
-
-export const login = (_email, _password) => ({
-  type: "LOGIN",
+// 액션 타입 및 액션 생성자 함수
+export const login = (_email, _password) => ({ // 액션 생성자 함수
+  type: "LOGIN", // 액션 타입
   payload: {
     email: _email,
     password: _password

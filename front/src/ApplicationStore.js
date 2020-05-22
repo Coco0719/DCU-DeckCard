@@ -1,11 +1,8 @@
 import React, { createContext, useReducer } from "react";
-//import { todoReducer } from "./reducers/TodoReducer"
 import { userReducer, userInitialState } from "./reducers/UserReducer"
 import App from "./App";
 
-
-
-export const DeckCardContext = React.createContext();
+export const DeckCardContext = createContext();
 
 const ApplicationStore = (props) => {
   // store 객체를 만들어서 컨텍스트로 하위 컴포넌트들에게 넘겨줌

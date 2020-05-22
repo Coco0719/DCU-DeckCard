@@ -1,11 +1,9 @@
 
-
 export const userInitialState = {
-  token: null,
+  token: "",
   authenticated: false,
 }
 
-//export const todoReducer = (state = initialState, { type, payload }) => {
 export const userReducer = (state, { type, payload }) => {
   switch (type) {
     case "LOGIN":

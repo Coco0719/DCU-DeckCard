@@ -9,14 +9,12 @@ import NotFound from './pages/errors/NotFound'
 function App() {
   return (
     <BrowserRouter>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route component={NotFound} />
+      </Switch>
     </BrowserRouter>
   );
 }
