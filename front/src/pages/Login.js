@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyright from './../components/common/Copyright';
+
+import { login } from "./../actions/userAction";
+import { DeckCardContext } from "./../ApplicationStore";
+import { Redirect } from 'react-router'
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,8 +39,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Login = () => {
   const classes = useStyles();
+
+  const { userState, userDispatch } = useContext(DeckCardContext);
+
+  const [emailInputData, setEmailInputData] = useState("");
+  const handleEmailInputData = e => {
+    setEmailInputData(e.target.value);
+  };
+
+  const [passwordInputData, setPasswordInputData] = useState("");
+  const handlePasswordInputData = e => {
+    setPasswordInputData(e.target.value);
+  };
+
+  const submitLoginInfo = (e) => {
+    e.preventDefault();
+    userDispatch(login(emailInputData, passwordInputData));
+  }
+
+  if (userState.authenticated === true) return <Redirect to='/' />;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,6 +82,7 @@ const Login = () => {
             label="이메일"
             name="email"
             autoComplete="email"
+            onChange={handleEmailInputData} // 주의
             autoFocus
           />
           <TextField
@@ -68,21 +94,23 @@ const Login = () => {
             label="비밀번호"
             type="password"
             id="password"
+            onChange={handlePasswordInputData} // 주의
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="비밀번호 저장"
           />
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-          >
-            로그인
-          </Button>
+            onClick={submitLoginInfo}
+          > 로그인 </Button>
+
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

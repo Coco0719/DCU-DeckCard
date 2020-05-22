@@ -6,9 +6,6 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import NotFound from './pages/errors/NotFound'
 
-//import './App.css';
-
-
 function App() {
   return (
     <BrowserRouter>
