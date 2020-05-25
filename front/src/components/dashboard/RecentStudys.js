@@ -6,7 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from '../common/Title';
+import Title from '../common/title/Title';
 
 function createData(id, recentStudyDate, deckName, cardName, reviewCount, nextReviewDate, difficulty, importance) {
   return { id, recentStudyDate, deckName, cardName, reviewCount, nextReviewDate, difficulty, importance };

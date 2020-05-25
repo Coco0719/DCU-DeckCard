@@ -13,6 +13,7 @@ export const userReducer = (state, { type, payload }) => {
         authenticated: true
       }
     default:
+      console.log(`No Match UserReducer`)
       break;
   }
 }

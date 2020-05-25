@@ -51,20 +51,20 @@ export const favoriteListItems = (
   </div>
 );
 
-export const userInfoListItems = (
-  <div>
-    {/* <ListSubheader inset>Saved reports</ListSubheader> */}
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="내 정보" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="로그아웃" />
-    </ListItem>
-  </div>
-);
+// export const userInfoListItems = (
+//   <div>
+//     {/* <ListSubheader inset>Saved reports</ListSubheader> */}
+//     <ListItem button>
+//       <ListItemIcon>
+//         <AssignmentIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="내 정보" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <AssignmentIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="로그아웃" />
+//     </ListItem>
+//   </div>
+// );
