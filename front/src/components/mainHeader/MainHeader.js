@@ -9,10 +9,9 @@ import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { DeckCardContext } from "../../../ApplicationStore";
-import { toolbarToggle } from "../../../actions/mainAction";
+import { DeckCardContext } from './../../ApplicationStore';
+import { toggleToolbar } from "./../../actions/mainAction";
 import mainHeaderUseStyles from './MainHeaderUseStyles'
-
 
 
 console.log(`MainHeader Render....`)
@@ -26,7 +25,7 @@ const MainHeader = () => {
   const openToolbar = (e) => {
     e.preventDefault();
     console.log('openToolbar')
-    mainDispatch(toolbarToggle(true))
+    mainDispatch(toggleToolbar(true))
   }
 
   return (
