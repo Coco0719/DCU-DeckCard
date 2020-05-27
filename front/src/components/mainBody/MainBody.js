@@ -13,7 +13,7 @@ const MainBody = () => {
   return (
     <main className={classes.content}>
       <div className={classes.appBarSpacer} />
-      <Container maxWidth="lg" className={classes.container}>
+      <Container maxWidth="xl" className={classes.container}>
         <ControlMainBodyContent />
       </Container>
       {/* <MainFooter /> */}
