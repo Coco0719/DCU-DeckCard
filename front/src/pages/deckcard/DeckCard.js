@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MainHeader from '../../components/mainHeader/MainHeader';
 import MainToolbar from '../../components/mainToolbar/MainToolbar';
 import MainBody from '../../components/mainBody/MainBody';
+import MainFooter from './../../components/mainFooter/MainFooter';
 import { DeckCardContext } from '../../ApplicationStore';
 import deckcardUseStyles from './DeckCardUseStyles';
 
@@ -32,7 +33,7 @@ const DeckCard = () => {
       <MainHeader />
       <MainToolbar />
       <MainBody />
-      {/* MainFooter 추가 예정 */}
+      {/* <MainFooter /> */}
     </div>
   )
 }

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragement } from 'react';
 import Container from '@material-ui/core/Container';
 
 import mainBodyUseStyles from './MainBodyUseStyles';
+import MainFooter from './../mainFooter/MainFooter';
 import ControlMainBodyContent from './ControlMainBodyContent';
 
 const MainBody = () => {
@@ -15,6 +16,7 @@ const MainBody = () => {
       <Container maxWidth="lg" className={classes.container}>
         <ControlMainBodyContent />
       </Container>
+      {/* <MainFooter /> */}
     </main>
   );
 }
