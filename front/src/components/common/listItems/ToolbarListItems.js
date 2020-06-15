@@ -3,18 +3,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import StarIcon from '@material-ui/icons/Star';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import { DeckCardContext } from '../../../ApplicationStore';
 import { changeMainContent } from '../../../actions/mainAction';
 import MAIN_CONTENT_STATUS from '../../../utils/constants';
+import { deleteFavorite } from './../../../actions/deckcardAction'
+
 
 const MainListItems = (props) => {
   const changeMainContentStatus = (e, mainContentStatus) => {
     e.preventDefault();
-    console.log(mainContentStatus);
     props.mainDispatch(changeMainContent(mainContentStatus));
   }
 
@@ -29,40 +32,62 @@ const MainListItems = (props) => {
         <ListItemText primary="대시보드" />
       </ListItem>
       <ListItem button
-        onClick={(e) => changeMainContentStatus(e, MAIN_CONTENT_STATUS.DECK)}
+        onClick={(e) => changeMainContentStatus(e, MAIN_CONTENT_STATUS.DECK_LIST)}
       >
         <ListItemIcon>
-          <AssignmentIcon />
+          <StarIcon />
         </ListItemIcon>
-        <ListItemText primary="덱" />
+        {/* <ListItemText primary="덱" /> */}
+        <ListItemText primary="카드" />
       </ListItem>
     </Fragment>
   );
 }
 
+const FavoriteItem = ({ deck }) => {
 
-const FavoriteListItems = () => {
+  const { deckcardDispatch } = useContext(DeckCardContext);
+
+  const deleteFavoriteDeckItem = (e) => {
+    const deckId = e.currentTarget.dataset.id;
+    deckcardDispatch(deleteFavorite(deckId));
+  }
+
+  return (
+    <Fragment>
+      <ListItem button>
+        <ListItemIcon>
+          <IconButton data-id={deck.id} onClick={deleteFavoriteDeckItem}>
+            <StarIcon />
+          </IconButton>
+        </ListItemIcon>
+        <ListItemText
+          primary={`${deck.title}`}
+          secondary={`${deck.desc}`}
+        />
+      </ListItem>
+    </Fragment>
+  )
+}
+
+
+const FavoriteListItems = (props) => {
+  const favoritIds = props.deckcardState.favoritIds;
+  const decks = props.deckcardState.decks;
+  const favoriteDecks = [];
+  for (let i = 0; i < favoritIds.length; i++) {
+    const id = favoritIds[i];
+    const deckItem = decks.filter(deck => deck.id === id);
+    if (deckItem !== null) {
+      favoriteDecks.push(deckItem[0]);
+    }
+  }
   return (
     <Fragment>
       <ListSubheader inset>즐겨찾기 목록</ListSubheader>
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="스레드" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="운영체제" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="데이터베이스" />
-      </ListItem>
+      {
+        favoriteDecks.map((deck) => <FavoriteItem id={deck.id} deck={deck} />)
+      }
     </Fragment>
   );
 }
@@ -70,7 +95,7 @@ const FavoriteListItems = () => {
 
 const ToolbarListItems = () => {
 
-  const { mainDispatch } = useContext(DeckCardContext);
+  const { mainDispatch, deckcardState } = useContext(DeckCardContext);
 
   return (
     <Fragment>
@@ -80,7 +105,7 @@ const ToolbarListItems = () => {
       </List>
       <Divider />
       <List>
-        <FavoriteListItems />
+        <FavoriteListItems deckcardState={deckcardState} />
       </List>
       <Divider />
     </Fragment>

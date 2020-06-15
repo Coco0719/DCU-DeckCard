@@ -24,7 +24,6 @@ const MainHeader = () => {
 
   const openToolbar = (e) => {
     e.preventDefault();
-    console.log('openToolbar')
     mainDispatch(toggleToolbar(true))
   }
 

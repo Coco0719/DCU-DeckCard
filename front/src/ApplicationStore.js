@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { userReducer, userInitialState } from "./reducers/UserReducer";
 import { mainReducer, mainInitialState } from "./reducers/MainReducer";
-
+import { deckcardReducer, deckcardInitialState } from "./reducers/DeckCardReducer";
 import App from "./App";
 
 export const DeckCardContext = createContext();
@@ -12,12 +12,14 @@ const ApplicationStore = (props) => {
   //  const [todos, dispatch] = useReducer(todoReducer, initialState);
   const [mainState, mainDispatch] = useReducer(mainReducer, mainInitialState);
   const [userState, userDispatch] = useReducer(userReducer, userInitialState);
+  const [deckcardState, deckcardDispatch] = useReducer(deckcardReducer, deckcardInitialState);
 
   return (
     // 결국은 하위 컴포넌트들은 컨텍스트를 이용해 스토어를 가져와서 써야함
     <DeckCardContext.Provider value={{
       userState, userDispatch,
       mainState, mainDispatch,
+      deckcardState, deckcardDispatch
     }}>
       <App />
     </DeckCardContext.Provider>
